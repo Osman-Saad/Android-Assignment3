@@ -1,14 +1,9 @@
-package com.pbws.android_assignment_3
+package com.pbws.android_assignment_3.screen
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.pbws.android_assignment_3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.loginBtn.setOnClickListener{
-            val intent = Intent(this,HomeActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

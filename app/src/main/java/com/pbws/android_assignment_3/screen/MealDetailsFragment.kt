@@ -1,32 +1,32 @@
-package com.pbws.android_assignment_3
+package com.pbws.android_assignment_3.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.pbws.android_assignment_3.adapter.MealAdapter
-import com.pbws.android_assignment_3.databinding.FragmentBrowseMealBinding
+import androidx.navigation.fragment.navArgs
+import com.pbws.android_assignment_3.databinding.FragmentMealDetailsBinding
 import com.pbws.android_assignment_3.model.Meal
 
-class BrowseMealFragment : Fragment() {
-    private var _binding: FragmentBrowseMealBinding? = null
+
+class MealDetailsFragment : Fragment() {
+    private var _binding: FragmentMealDetailsBinding? = null
     private val binding get() = _binding!!
+    private val args:MealDetailsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBrowseMealBinding.inflate(inflater, container, false)
+        _binding = FragmentMealDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.mealsRecycleview.adapter = MealAdapter(Meal.mealList){id->
-            val action = BrowseMealFragmentDirections.actionBrowseToMealDetailsFragment(id)
-            findNavController().navigate(action)
-        }
+        val meal = Meal.mealList[args.id]
+        binding.mealDetailsImg.setImageResource(meal.image)
+        binding.mealDetailsText.text = meal.name
     }
 
 
